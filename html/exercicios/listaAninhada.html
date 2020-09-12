@@ -1,0 +1,60 @@
+<!-- Imagine que você vai por exemplo colocar uma lista aninhada para representar as pastas e os arquivos de um projeto -->
+<h1>Projeto</h1>
+
+<ul class="tree">
+    <li>
+        <span wm-folder>backend</span>
+        <ul>
+            <li>
+                <span wm-folder>app</span>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <span wm-folder>config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span wm-folder>frontend</span>
+        <ul>
+            <li>
+                <span wm-folder>public</span>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+
+<script>
+    document.querySelectorAll('[wm-folder]').forEach(folder => {
+        folder.onclick = function(e) {
+            const ul = folder.nextElementSibling
+            const displayAtualDaUl = ul.style.display
+            ul.style.display = displayAtualDaUl === 'none' ? 'block' : 'none'
+        }
+    })
+</script>
+
+<!-- Desafio de fazer a pasta recolher e mostrar seu conteúdo
+
+    1º passo: marcar as pastas que serão 'recolhidas'. As pastas foram marcadas com wm-folder
+    2º passo: usar o forEach para selecionar todas as pastas
+    3º passo: criar a função que irá iniciar no evento onclick
+    4º passo: é necessário pegar a ul associada a cada spam. Como a ul é o próximo elemento de cada span, pode-se usar o .nextElementSibling
+    5º passo: criar a variável displayAtualDaUl para representar o display atual daquela ul. Obs: none == não está sendo visível | block == está sendo visível
+    6º passo: ul.style.display recebe if displayAtualDaUl for === à none ele vai receber block caso contrário ele vai receber none -->

@@ -1,0 +1,71 @@
+</html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #03</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+        }
+
+        .esquerda {
+            height: 100vh;
+            width: 50%;
+            background-color: coral;
+        }
+
+        .direita {
+            height: 100vh;
+            width: 50%;
+            background-color: cornflowerblue;
+        }
+
+        .item {
+            border: solid 5px black;
+            background-color: darkgrey;
+            color: white;
+            height: 100px;
+            font-size: 40px;
+            margin: 10px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="esquerda" wm-dropzone>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div class="direita" wm-dropzone></div>
+    <script>
+        // Exemplo de Drag and Drop
+        const items = document.querySelectorAll('[wm-dropzone] .item') // Pega os itens dentro da class item que estão em uma wm-dropzone
+        items.forEach((item, index) => { // (item, index) Pega o item e o índice
+            // OBS: Eu quero que esses itens tenham um id então farei uma verificação se tem um id ou não e caso não tenha um id irá adicionar
+            item.draggable = true // Transforma o elemento em um elemento arrastável
+            item.id = item.id || `draggable-item-${index}` // Se o item.id não estiver setado (se for falso) eu coloco o `draggable-item-${index}`
+            item.ondragstart = e =>
+                e.dataTransfer.setData('item-id', e.target.id)
+        })
+
+        const dropzones = document.querySelectorAll('[wm-dropzone]')
+        dropzones.forEach(dropzone => {
+            dropzone.ondragover = e => e.preventDefault() // Este evento acontece quando eu termino de arrastar o elemento. O preventDefault vai impedir que ele aconteça e chamará o próximo evento
+            dropzone.ondrop = function(e) {
+                const id = e.dataTransfer.getData('item-id') // Pega o item que eu estou arrastando
+                const item = document.getElementById(id)
+                // e.target.appendChild(item) // Onde eu estiver soltando o elemento (que é o e.target) é onde eu vou adicionar o child
+                dropzone.appendChild(item) // Só vai soltar o item na dropzone e não em qualquer elemento
+            }
+        })
+    </script>
+</body>
+
+</html>

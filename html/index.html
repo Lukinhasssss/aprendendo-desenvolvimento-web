@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios HTML</title>
+    <style>
+        #conteudo {
+            padding: 30px, 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+
+    <nav>
+        <a href wm-nav="exercicios/teste.html">00 - Teste</a> |
+        <a href wm-nav="exercicios/texto1.html">01 - Texto 1</a>
+    </nav>
+
+    <section id="conteudo"></section>
+
+    <footer>
+        Curso de Web Moderno
+    </footer>
+
+    <script>
+        document.querySelectorAll('[wm-nav]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+
+            link.onclick = function(e) {
+                e.preventDefault()
+
+                fetch(link.getAttribute('wm-nav'))
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+
+</html>
+<!-- no terminal: (http-server .), para iniciar o servidor AJAX | (http-server -p 8080), para escolher a porta | (http-server -c-1), desabilita o cache -->
+<!-- section é a seção responsável por renderizar o conteúdo-->
+<!-- document.querySelectorAll('a') percorre todos os links. Obs: 'a' é a tag para referenciar links -->
+<!-- link.onclick recebe uma função que será chamada quando o usuário clicar, ou seja, ao clicar no link chama a função -->
+<!-- preventDefault(): previne que o comportamento padrão ocorra -->
+<!-- fetch faz uma requisição AJAX encima do link obtido -->
+<!-- resp.text() serve para pegar o conteúdo html da página que eu fiz a requisição -->

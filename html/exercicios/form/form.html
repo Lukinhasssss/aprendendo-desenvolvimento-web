@@ -1,0 +1,73 @@
+<h1>Formulário</h1>
+
+<form method="POST">
+    <input type="hidden" name="id" value="3">
+    <input type="text" name="nome">
+    <input type="password" name="senha">
+    <textarea name="bio" cols="30" rows="10"></textarea>
+
+    <div>
+        <input type="radio" name="tipo" value="admin"> Admin
+        <input type="radio" name="tipo" value="regular"> Regular
+        <input type="radio" name="tipo" value="professor"> Professor
+    </div>
+    <div>
+        <input type="checkbox" name="ativo"> Ativo
+    </div>
+
+    <select name="estado">
+        <option value="ac">Acre</option>
+        <option value="ba">Bahia</option>
+        <option value="ce">Ceará</option>
+        <option value="" selected>Selecione um Estado</option>
+        <option value="mg">Minas Gerais</option>
+        <option value="rj">Rio de Janeiro</option>
+        <option value="sp">São Paulo</option>
+    </select>
+
+    <select name="interesses" multiple size="4">
+        <option>Utilize a tecla CTRL para selecionar mais de um item</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="csharp">C#</option>
+        <option value="hacking">Ethical Hacking</option>
+    </select>
+
+    <button formaction="http://localhost:3003/usuarios">Incluir</button>
+    <button formaction="http://localhost:3003/usuarios/3">Alterar</button>
+</form>
+
+<style>
+
+    input, textarea, select {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type=radio], input[type=checkbox] {
+        display: inline;
+    }
+
+</style>
+
+<!-- form action="" method="": faz uma requisição para a url especificada utilizando algum método (GET, POST...) -->
+<!-- button formaction="" formmethod="": faz uma requisição para a url especificada e formmethod altera o método -->
+<!-- Dentro do formulário terá alguns inputs. Quando submeter esse formulário ele vai pegar os dados do seu formulário
+aquilo que você preencheu nos campos de entrada (checkbox, radio, button...) e quando submeter isso irá para o servidor -->
+
+<!-- textarea ==> cols é a quantidade de colunas e rows é a quantiade de linhas -->
+<!-- display: block faz com que fique um elemento em cada linha -->
+<!-- margin-bottom faz com que tenha um espaçamento entre cada um dos campos do formulário para ficar visualmente mais agradável -->
+
+<!-- input[type=radio] permite adicionar estilos no input do tipo radio e {display: inline;} altera o input do tipo radio para que ele fique inline (na mesma linha) -->
+
+<!-- No input do tipo radio o valor que será enviado para o backend é o valor que estiver dentro de value -->
+
+<!-- O que é mandando não é o label e sim o valor que é associado a opção que você selecionou no select -->
+<!-- Obs: Também é possível ter um select de multiplas opções utilizando o 'multiple size="5"'. | size é o tamanho de opçôes eu quero que fique sendo exibidas -->
+<!-- selected fará com que o valor fique selecionado inicialmente -->
+
+<!-- O input do tipo hidden carrega dados escondidos. Ele pode por exemplo guardar o id do usuário em um input escondido -->

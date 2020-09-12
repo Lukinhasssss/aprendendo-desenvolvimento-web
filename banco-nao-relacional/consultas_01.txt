@@ -1,0 +1,23 @@
+db.estados.find()
+db.estados.find({sigla: "RJ"}).pretty()
+
+db.estados.findOne()
+db.estados.findOne({sigla: "RJ"})
+
+db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty()
+db.estados.find({$and: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty()
+
+db.estados.find({populacao: {$exists: true}}).pretty()
+
+db.estados.find().skip(1) --> Neste caso a pesquisa pula o 1º e começa a trazer a partir do 2º
+
+db.estados.find().limit(2).pretty() --> Limita a pesquisa para apenas 2 resultados
+db.estados.find().skip(1).limit(2).pretty()
+
+db.estados.count() --> retorna quantos registros tem na coleção
+
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1})
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1, _id: 0})
+
+** Trazendo o nome das cidades que estão dentro de um estado
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0})

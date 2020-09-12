@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #02</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        div {
+            border: solid 5px dodgerblue;
+            font-size: 40px;
+        }
+
+        .flex-container div {
+            box-sizing: border-box; /* border-box = o tamanho da caixa também vai considerar a borda */
+        }
+
+        .flex-container {
+            display: flex;
+            height: 300px;
+            width: 600px;
+        }
+
+        .flex-container div:nth-child(3) { /* Pega o 3º filho da div dentro de flex-container */
+            background-color: indianred;
+            order: 1; /* Ordem no qual o item vai ser exibido dentro do meu flex-container */ /* Como fica com a ordem maior passa a ser o último elemento considerado na sequência dos itens */
+            /* Obs: Os elementos que possuem uma ordem maior vão sendo exibidos por último e a ordem padrão é 0 (zero) */
+            order: -1; /* Desta forma terá a ordem menor do que os outros e será exibido na 1ª posição */
+            align-self: center; /* Serve para alinhar determinado item que você está referenciando */
+            align-self: flex-end;
+            align-self: flex-start;
+            align-self: stretch; /* default (padrão) */
+        }
+
+        .flex-container div {
+            width: 100px;
+            flex-grow: 0; /* Define a lógica de como será utilizado o espaço sobrando */
+            flex-grow: 1; /* Todas as divs vão crescer de forma igual */
+        }
+
+        .flex-container div:nth-child(1) {
+            flex-grow: 2;
+        }
+
+        .flex-container {
+            width: 300px;
+            flex-shrink: 1; /* Tem a mesma lógica do grow mas encolhe o conteúdo */
+        }
+
+        .flex-container div:nth-child(1) {
+            flex-shrink: 5; /* Vai ter um peso maior na hora de encolher */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+    <!-- <script src="js/tag.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<video id="meuVideo" width="800" height="450" controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4" type="video/mp4">
+    Seu browser não suporta a tag de vídeo.
+</video>
+
+<div wm-progresso="meuVideo" class="progresso">
+    <div></div>
+</div>
+
+<div>
+    <button wm-play="meuVideo">Play</button>
+    <button wm-pause="meuVideo">Pause</button>
+</div>
+
+<style>
+    .progresso {
+        height: 20px; width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso > div {
+        background-color: red; color: #fff;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0%;
+    }
+</style>
+
+<!-- Usando a source é possível ter várias fontes de vídeos diferentes -->
+<!-- constrols | propriedade faz com que os controles do vídeo apareçam -->
+<!-- autoplay | faz com que no momento que eu entre na tela (página) o video comece automaticamente -->
+<!-- controlsList="nodownload" impede o download pelo 'botão de download' -->
+<!-- div wm-progresso vai representar minha barra de progresso. Este progresso está relacionado com qual vídeo ??? Para isso eu informo o mesmo id do meu vídeo,
+    que vai ser a forma de eu saber a qual vídeo este processo está associado e associada a essa div eu coloco uma classe -->
+
+<!-- A div de fora define a moldura do progresso, a área do progresso, se esse progresso tem algum tipo de borda, a altura do progresso...-->
+<!-- A div de dentro vai ser responsável por preencher com uma cor a barrinha de progresso, vai ser responsável pela largura... -->
+
+<!-- OBSERVAÇÃO IMPORTANTE: class É MAIS APROPRIADA PARA APLICAR ESTILOS -->
+<!-- .progresso > div aplica estilo dentro da div da classe progresso (div interna) -->

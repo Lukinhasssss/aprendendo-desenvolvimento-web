@@ -1,0 +1,6 @@
+db.estados.remove({sigla: "AC"})
+
+** Excluindo estados que não tem o atributo população
+db.estados.remove({populacao: {$exists: false}}, 1) --> Neste caso exclui apenas 1
+
+db.estados.remove({populacao: {$lt: 20000000}}) --> Remove população com menos de 20000000 de habitantes

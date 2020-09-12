@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #01</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo">.terceiro .ultimo</div>
+    <script>
+        document.getElementById('primeiro').classList.add('destaque') // No classList eu coloco a classe que eu quero adicionar
+
+        const divs =  document.getElementsByTagName('div') // Todos os elementos do tipo 'div' serão selecionados a partir desse método
+        // Transformando html-collections em array | a const divs setada acima virou um html-collections
+        Array.from(divs).forEach(e => e.classList.remove('destaque')) // Pega todos os elementos divs, transforma em array e percorre cada um deles removendo a classe destaque
+
+        // Outra forma de trnsformar html-collections em array utilizando o operador 'spread'
+        const divsArray = [...divs] // Espalha cada um dos elementos dentro desse novo Array
+        divsArray.forEach(e => e.classList.add('destaque'))
+
+        // Usando função para selecionar os elementos a partir da classe que também irá retornar uma lista
+        const ultimosElementos = document.getElementsByClassName('ultimo') // No getElementsByClassName eu passo a classe que eu quero selecionar
+        for (let e of ultimosElementos) {
+            e.classList.remove('destaque')
+        }
+    </script>
+</body>
+</html>
+
+<!-- classList é uma propriedade somente leitura que retorna uma coleção (DOMTokenList) ativa dos atributos de classe do elemento -->

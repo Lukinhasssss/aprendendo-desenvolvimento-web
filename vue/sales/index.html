@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/vue.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Relatório de Vendas</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <h1 class="mt-3">{{ title }}</h1>
+
+            <table class="mt-5 table" v-if="salesByProduct">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(sale, index) in salesByProduct">
+                        <!-- <td>#{{ index + 1 }}</td> -->
+                        <td>#{{ ++index }}</td>
+                        <td>{{ sale.name }}</td>
+                        <td v-money="'R$'">{{ sale.value }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>+</td>
+                        <td>Total</td>
+                        <td v-money="'R$'">{{ calculateTotal(salesByProduct) }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <!-- <table class="mt-5 table">
+                <thead>
+                    <tr>
+                        <th>ID</th> <!-- 1ª Coluna
+                        <th>Nome</th> <!-- 2ª Coluna
+                        <th>Preço</th> <!-- 3ª Coluna
+                        <th>Qtde</th> <!-- 4ª Coluna
+                        <th>Data</th> <!-- 5ª Coluna
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="sale in sales"> <!-- Para cada venda em vendas..., ou seja, para cada item de sales...
+                        <td>{{ sale.id }}</td>
+                        <td>{{ sale.name }}</td>
+                        <td v-money="'R$'">{{ sale.price }}</td>
+                        <td>{{ sale.qtde }}</td>
+                        <td>{{ sale.date }}</td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+    </div>
+
+    <script>
+        Vue.directive('money', {
+            inserted(el, binding) { // Essa função será chamada quando o elemento for inserido na DOM
+                const amount = parseFloat(el.innerHTML)
+                .toFixed(2)
+                .replace('.', ',')
+                .replace(/(\d)(?=(\d{3})+\,)/g, '$1.')
+            el.innerHTML = `${binding.value} ${amount}`
+            }
+        })
+
+        new Vue({
+            el: "#app",
+            data: {
+                title: 'Relatório de Vendas',
+                sales: null
+            },
+            methods: {
+                getSales() { // method responsável por obter via AJAX as vendas
+                    fetch('/data/sales.json')
+                        .then(resp => resp.json())
+                        .then(data => this.sales = data)
+                },
+                calculateTotal(sales) { // TOTAL GERAL
+                    if (!sales) return 0
+                    return sales.reduce((total, sale) => total + sale.value, 0) // Começa zerado e vai somando os valores das vendas até gerar o total geral
+                }
+            },
+            computed: {
+                salesByProduct() { // TOTAL POR PRODUTO
+                    if (!this.sales) return null
+
+                    const salesByProduct = this.sales.reduce((grouped, sale) => {
+                        if (!grouped.hasOwnProperty(sale.name)) {
+                            grouped[sale.name] = { // Ou seja, eu quero adicionar este atributo (sale.name) dentro deste objeto (grouped)
+                                name: sale.name,
+                                value: sale.price * sale.qtde
+                            }
+                            return grouped
+                        }
+
+                        grouped[sale.name].value += sale.price * sale.qtde // Pega o valor da venda atual e acrescenta ao elemento que já está presente lá
+                        return grouped
+                    }, {})
+
+                    return Object.values(salesByProduct) // Retorna somente os valores deste objeto e não mais as chaves
+                }
+            },
+            mounted() { // Essa função será chamada quando a Vue instance 'montar' um template que ela está gerenciando (que é o template que tem o id: app)
+                this.getSales()
+            }
+        })
+    </script>
+</body>
+
+</html>

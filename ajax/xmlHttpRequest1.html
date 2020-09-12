@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+        // Criando função para fazer requisição AJAX
+        function ajax(config) { // função que recebe um objeto que representa as configurações. Dentro desse objeto terá vários parâmetros que eu vou precisar, como: url, método que será chamado em caso de sucesso, método que será chamado em caso de erro...
+            const xhr = new XMLHttpRequest() // xhr --> x == XML, h == Http, r == Request
+            xhr.open(config.metodo, config.url, true) // --> Para abrir uma requisição do tipo 'GET' e eu espero receber dentro de config um parâmetro chamado url. O terceiro parâmetro diz se essa requisição será feita de forma assíncrona.
+
+            xhr.onload = e => {
+                if (xhr.status === 200) {
+                    config.sucesso(xhr.response) // Passa a resposta que eu recebi pois a requisição foi bem sucedida. OBS: Toda linha 200 do protocolo HTTP é uma linha de sucesso
+                } else if (xhr.status >= 400) {
+                    config.erro({
+                        codigo: xhr.status, // Código do erro
+                        texto: xhr.statusText // Texto do erro
+                    })
+                }
+            }
+
+            xhr.send()
+        }
+
+        function criarTabela(estados) {
+            //Quando eu receber a resposta vou começar a renderizar uma tabela
+            const linhas = estados.map(estado => {
+                const tableDataId = document.createElement('td')
+                tableDataId.innerHTML = estado.id // Significa que tableDataId vai receber estado.id
+
+                const tableDataNome = document.createElement('td')
+                tableDataNome.innerHTML = estado.nome
+
+                const tableDataSigla = document.createElement('td')
+                tableDataSigla.innerHTML = estado.sigla
+
+                const tableRow = document.createElement('tr')
+
+                tableRow.appendChild(tableDataId)
+                tableRow.appendChild(tableDataNome)
+                tableRow.appendChild(tableDataSigla)
+
+                return tableRow
+            })
+
+                const tabela = document.createElement('table')
+                linhas.forEach(linha => tabela.appendChild(linha)) // Adiciona na tabela cada uma das linhas que criei através do map
+                // Adicionando a tabela no body
+                document.body.appendChild(tabela)
+        }
+
+        // Chamando a função ajax passando para ela um objeto
+        ajax({
+            url: "dados/estados.json",
+            metodo: "get",
+            sucesso(resposta) { // Se der sucesso esse método será chamado
+                const estados = JSON.parse(resposta) // Recebe os dados e converte para objeto
+                criarTabela(estados)
+            },
+            erro(e) { // Se der erro esse método será chamado
+                const mensagemDeErro = document.createTextNode(`${e.codigo}: ${e.texto}`)
+                document.body.appendChild(mensagemDeErro)
+            }
+        })
+    </script>
+</body>

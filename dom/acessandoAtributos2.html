@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <label for="compras">Compras</label> <!-- label for (aponta para) compras -->
+        <ul id="compras" destino='escritório' data-urgencia="5">
+            <li>Café</li>
+            <li>Água</li>
+            <li>Copo Descartável</li>
+        </ul>
+    </div>
+    <script>
+        const lista = document.querySelector('div ul[destino="escritório"]') // O ideal neste caso seria o id compras (#compras)
+        console.log('Elemento "ul"........................')
+        console.log('childNodes', lista.childNodes)
+        console.log('destino', lista.destino) // Nesta caso não dá certo pois destino é uma propriedade personalizada e caso acessada com . o resultado será undefined
+        console.log('getAttribute', lista.getAttribute('destino'))
+        console.log('hasAttribute', lista.hasAttribute('destino'))
+        lista.setAttribute('destino', 'empresa') // Assim o valor de destino passará a ser 'empresa'
+        lista.setAttribute('status', 'aberto') // neste caso o status não existe então o setAtributo irá criar o atributo status e dar para ele o valor 'aberto'
+        // Resumindo --> setAttribute serve para alterar atributo que já existe ou para criar um atributo caso ele não exista
+        lista.removeAttribute('destino')
+
+        console.log(lista.dataset)
+        console.log(lista.dataset.urgencia)
+        lista.dataset.urgencia = 4
+        console.log(lista.getAttribute('data-urgencia'))
+
+        // Cuidado!!! Nem sempre o atributo que está definido no html estará disponível para você acessar com o mesmo nome
+        const label = document.querySelector('label')
+        console.log(label.for) // for é uma palavra reservada então para utilizar o for tem que fazer da forma que está logo abaixo
+        console.log(label.htmlFor)
+        console.log(label.getAttribute('for'))
+        /*
+        RESUMINDO!!!
+            ATRIBUTOS DO PRÓPRIO HTML SÃO POSSÍVEIS DE ACESSAR COM A NOTAÇÃO PONTO(.)
+            ENQUANTO OS ATRIBUTOS PERSONALIZADOS SÃO ACESSADOS COM A FUNÇÃO .getAttribute()
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <a espera-um-pouco href="https://google.com.br">Google</a> <!-- onclick="navegarEm5s(event)" -->
+    </div>
+    <script>
+        function navegarEm5s(e) {
+            e.preventDefault() // Vai 'previnir' que o comportamento padrão ocorra
+            console.log('Saindo em 5s...')
+            setTimeout(() => {
+                const link = e.target // e = evento | target é o elemento html que disparou o evento, por exemplo, se eu clicar em um link o e.target será o link
+                window.location.href = link.href // window.location.href --> Substitui o link na barra de endereços do browser depois de 5 segundos
+            }, 5000) // 5000 milisegundos == 5 segundos
+        }
+        // Para chamar a função eu posso passalá para a propriedade href que eu deseje que o evento aconteça passando a propriedade onclick="nomeDaFunção(event)", ou seja:
+            // onclick="navegarEm5s(event)", ou seja, ficaria dessa forma neste exemplo: <a href="https://google.com.br" onclick="navegarEm5s(event)"</a>>Google</a>
+
+        /*
+        Outra forma de chamar a função é selecionando o elemento da forma que está logo abaixo
+        const a = document.querySelector('a')
+        a.onclick = navegarEm5s
+        */
+
+        // Mas a forma mais ideal é criando um atributo personalizado para identificar que no link está acontecendo algum evento
+        const a = document.querySelector('[espera-um-pouco]')
+        a.onclick = navegarEm5s
+    </script>
+</body>

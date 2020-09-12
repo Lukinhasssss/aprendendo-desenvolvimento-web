@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Mini SPA</title>
+    <link rel='stylesheet' href='../css/estilo.css'>
+    <style>
+        nav {
+            font-size: 2em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #FFF;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body class="conteudo">
+    <nav>
+        <a href wm-link="series.html" wm-destino=".pagina">Séries</a> |
+        <a href wm-link="linguagens.html" wm-destino=".pagina">Linguagens</a>
+    </nav>
+    <div class="pagina"></div>
+    <script>
+        function navegarViaAjax(url, seletor, push = true) {
+            if (!url || !seletor) return // Se não tem url ou não tem seletor, return. | OBS: O return faz com que já saia do if
+            const elemento = document.querySelector(seletor)
+            // Agora que eu já consegui o elemento a partir do seletor eu estou pronto para fazer minha requisição ajax
+            fetch(url)
+                .then(response => response.text()) // Neste caso como estou trabalhando com dados em html eu pego o texto do html a partir da função .text()
+                .then(html => {
+                    elemento.innerHTML = html
+                    // Armazenando no histórico do browser para poder voltar para a página anterior:
+                    if (push) { // É o mesmo que: if (push == true) {}, ou seja, se estiver verdadeiro adiciona mais um item ao histótico
+                        history.pushState({ seletor }, null, url)
+                    }
+                })
+        }
+
+        document.querySelectorAll('[wm-link]').forEach(link => {
+            const url = link.attributes['wm-link'].value // Pega o valor do atributo['wm-link'] e o armazena na const url
+            const seletorDestino = link.attributes['wm-destino'].value // Pega o valor do atributo['wm-destino'] e o armazena na const seletorDestino
+
+            // Capturando o evento do click no link
+            link.onclick = e => {
+                e.preventDefault()
+                navegarViaAjax(url, seletorDestino)
+            }
+        })
+
+        window.onpopstate = e => { // onpopstate retira o primeiro elemento da pilha de estado(navegação)
+            if (e.state) {
+                navegarViaAjax(window.location.href, e.state.seletor, false) // 1º param = url, 2º param = seletor, 3º param = push == false
+            }
+        }
+    </script>
+</body>

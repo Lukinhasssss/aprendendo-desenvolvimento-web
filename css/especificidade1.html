@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Especificidade CSS</title>
+    <style>
+        /* https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity */
+        /*
+            Em linhas gerais... qual é a ordem das especificidades ???
+
+            1. Regras com !important
+            2. Seletores mais específicos
+            3. Última regra processada (empate) | O último processado tem prioridade por aquele que foi processado anteriormente
+        */
+
+        p {
+            background-color: #aaa; /* Aplica o background á todas as tags p */
+        }
+
+        .observacao {
+            background-color: #5f5; /* A classe tem prioridade sobre a tag p */
+            border: dashed 5px;
+            padding: 200px!important;
+            font-size: 40px;
+        }
+
+        p.observacao {
+            padding: 5px;/* Esse é mais específico do que o de cima, ou seja, o nível de especificidade é maior */
+            background: linear-gradient(to right, purple, red) /* Aplica um gradiente da esquerda para direita */
+        }
+    </style>
+</head>
+
+<body>
+    <p class='observacao'>Olha essa observação!!!!</p>
+</body>
+
+</html>

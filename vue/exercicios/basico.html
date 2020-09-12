@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conceitos Básicos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app"> <!-- Trecho de html que será controlado pelo Vue -->
+        <p>1) {{ 2 + 2 }}</p>
+        <p>2) {{ "teste".toUpperCase() }}</p>
+        <p>3) Produto: {{ nome }}, R$ {{ preco }}, {{ desconto * 100}}%</p>
+        <p>4) Hora Certa: {{ horaCerta() }}</p>
+        <p>5) Preco Com Desconto: R$ {{ precoComDesconto }}</p>
+        <p>6) Preco Com Desconto: R$ {{ precoComDesconto.toFixed(2) }}</p>
+    </div>
+
+    <script>
+        new Vue({ // Vue instance
+            el: "#app", // el --> element | Recebe o seletor do elemento que você quer começar a controlar
+            data: {
+                nome: 'Caneta',
+                preco: 6.89,
+                desconto: 0.15
+            },
+            methods: {
+                horaCerta() {
+                    return new Date().toLocaleString()
+                }
+            },
+            computed: {
+                precoComDesconto() {
+                    return this.preco * (1 - this.desconto) // Os atributos de data são acessados a partir do this
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Media Query</title>
+    <style>
+        div {
+            font-size: 40px;
+            margin: 20px;
+            padding: 20px;
+            background-color: coral;
+            border: solid 5px;
+            display: none; /* Esconde o conteúdo */
+        }
+
+        @media (max-width: 600px) { /* Significa que se a largura tiver no máximo 600px (ou seja, se for <= 600px) vai executar o que estiver descrito aqui */
+            .muito-pequeno { display: block; }
+        }
+
+        @media (max-width: 1000px), (orientation: portrait) { /* Vai executar se a largura for <= 1000px ou (,) a orientação for retrato */
+            .pequeno-retrato { display: block; }
+        }
+
+        @media (min-width: 500px) and (max-width: 1000px) { /* Só vai executar se a largura mínima for >= 500px e (and) <=1000px */
+            .intervalo { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <div class="muito-pequeno">Muito Pequeno</div>
+    <div class="pequeno-retrato">Pequeno ou Retrato</div>
+    <div class="intervalo">Intervalo</div>
+</body>
+</html>

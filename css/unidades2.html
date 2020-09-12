@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Unidades #02</title>
+    <style>
+        .fora {
+            position: relative;
+            background: linear-gradient(to left, indigo, darkcyan);
+            height: 400px;
+            width: 400px;
+            padding: 50px;
+        }
+
+        .dentro {
+            background: linear-gradient(to right, rgb(13, 180, 180), #c41357);
+            height: 100px;
+            width: 100%;
+            position: static; /* OCUPA APENAS O ESPAÇO DO CONTEÚDO */
+            position: relative; /* OCUPA APENAS O ESPAÇO DO CONTEÚDO */
+            position: absolute; /* CONTEÚDO + PADDING */
+            position: fixed; /* UTILIZA O TAMANHO DO VIEWPORT */
+        }
+    </style>
+</head>
+<body>
+    <div class="fora">
+        <div class="dentro"></div>
+    </div>
+</body>
+</html>
+
+<!-- POR PADRÃO UMA DIV JÁ TEM A LARGURA (width) 100% MAS ELA NÃO TEM A ALTURA POR PADRÃO. -->
+<!-- A ALTURA DA DIV ASSUME O TAMANHO DO CONTEÚDO DENTRO DELA -->
+<!-- QUANDO NÃO INFORMA UMA position O PADRÃO É position: static -->

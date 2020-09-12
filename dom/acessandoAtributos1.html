@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <a href='https://www.cod3r.com.br'>Cod3r</a>
+    </div>
+    <div id='primeiro'>
+        <img src='http://files.cod3r.com.br/curso-web/logo-estreita.png' alt='logo'>
+    </div>
+    <script>
+        const img = document.querySelector('img') // Obs: img-seleciona elemento do tipo imagem | .img-seleciona classe | #img-seleciona id | [img]-seleciona atributo
+        console.log('getAttribute', img.getAttribute('src')) // Com a função getAttribute é possível acessar os atributos da imagem. Neste caso pega o valor do atributo 'src'
+        console.log('src', img.src) // Faz a mesma coisa que o exemplo acima. Pega o valor do atributo src
+        console.log('["src"]', img['src']) // Faz a mesma coisa que os exemplos acima Pega o valor do atributo 'src'
+        console.log('alt', img.alt) // Pega o valor do atributo 'alt'
+
+        console.log('Elemento "img"........................')
+        console.log('NodeType', img.nodeType) // (nodeType = 1) significa elemento | (nodeType = 2) significa elemento
+        console.log('NodeName', img.nodeName) // Retorna qual o tipo do elemento
+        console.log('NodeValue', img.nodeValue)
+
+        const src = img.getAttributeNode('src') // Retorna um nó que representa aquela atributo
+        console.log('Atributo "src"........................')
+        console.log('NodeType', src.nodeType)
+        console.log('NodeName', src.nodeName)
+        console.log('NodeValue', src.nodeValue)
+
+        const link = document.querySelector('a')
+        console.log('Elemento "a"........................')
+        console.log('href', link.href) // Retorna o valor do atributo 'href'
+        console.log('firstChild.nodeType', link.firstChild.nodeType)
+        link.firstChild.nodeValue = 'Novo Texto' // Altera o valor do firstchild do link
+        link.innerHTML = 'Novo Texto 2' // Faz o mesmo que o exemplo acima
+
+    </script>
+</body>
+
+</html>

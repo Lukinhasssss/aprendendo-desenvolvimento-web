@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        input[type=file] {
+            display: flex;
+            margin: 10px;
+            padding: 40px;
+            font-size: 40px;
+            background: crimson;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <input type="file" name="arquivo" />
+    <div class="progresso"></div>
+
+    <script>
+        function ajaxUpload(config) {
+            const xhr = new XMLHttpRequest()
+
+            if (xhr.upload) { // Se xhr.upload estiver presente, ou seja, se esta funcionaliade estiver presente no objeto significa que eu posso fazer o upload
+                xhr.upload.onprogress = e => { // É a forma que eu tenho para controlar/monitorar o progresso do upload, então eu consigo, por exemplo, ver quantos % do arquivo ja foi processado
+                    const atual = e.loaded
+                    const total = e.total
+                    // Em cima do atual e do total eu vou calcular o percentual
+                    const percentual = Math.floor(atual / total * 100)
+                    config.progresso({ atual, total, percentual })
+                }
+            }
+
+            xhr.open("post", config.url, true)
+            xhr.send(config.formData)
+        }
+
+        document.querySelector('input[type=file]').onchange = e => { // Essa função vai ser chamada no momento em que eu selecionar o arquivo
+            const formData = new FormData()
+            const inputFile = e.target
+            formData.append(inputFile.name, inputFile.files[0]) // e.target no caso é o input do tipo file (input[type=file]) | e.target.name pega o nome que já foi colocado no input
+
+            ajaxUpload({
+                url: "upload", // Que é exatamente o nome do 'endpoint' que eu coloquei lá no meu servidor (/upload)
+                formData: formData,
+                progresso(dados) {
+                    const progresso = document.querySelector('.progresso') // Seleciona a div que tem a classe progresso
+                    progresso.innerHTML = JSON.stringify(dados) // Pega o objeto, converte para string e coloca dentro de progresso.innerHTML
+                }
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Position</title>
+    <style>
+        div {
+            font-size: 60px;
+            padding: 30px;
+            border: solid 5px #222;
+            color: #fff;
+        }
+
+        .static { /* position: static faz com que as propriedades de posição (top, right, bottom, left...) não sejam consideradas */
+            top: 100px;
+            left: 100px;
+            background-color: steelblue;
+        }
+
+        .fixed { /* Leva em consideração o posicionamento que eu colocar */
+            position: fixed;
+            bottom: 30px;
+            right: 0px;
+            background-color: tomato;
+        }
+
+        .relative1 { /* Leva em consideração o elemento anterior */
+            position: relative;
+            left: 50px;
+            top: 5px;
+            background-color: seagreen;
+        }
+
+        .absolute1 { /* Neste caso como está dentro do body (elemento pai) vai se posicionar de forma absoluta dentro da página e dependendo de como estiver pode ficar por cima do conteúdo */
+            position: absolute;
+            left: 350px;
+            top: 120px;
+            background-color: violet;
+        }
+
+        .relative2 { /* Leva em consideração o elemento anterior */
+            position: relative;
+            left: 250px;
+            top: 2000px;
+            width: 200px;
+            height: 200px;
+            background-color: slategrey;
+        }
+
+        .absolute2 { /* Vai se posicionar de forma absoluta com relação ao elemento pai (.relative2) */
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: darkorange;
+        }
+
+        .sticky { /* O sticky não sai da tela ao rolar a página */
+            position: -webkit-sticky; /* Serve para o Safari */
+            position: sticky;
+            background-color: #777;
+            top: 10px; /* Quando chegar a 10px do top ele vai parar e não vai mais subir */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="static">Static (Padrão)</div>
+    <div class="fixed">Fixed</div>
+    <div class="relative1">Relative</div>
+    <div class="absolute1">Absolute</div>
+
+    <div class="relative2">
+        <div class="absolute2"></div>
+    </div>
+
+    <div class="sticky">Sticky</div>
+    <p style="padding-bottom: 2000px;">Opa</p>
+</body>
+
+</html>

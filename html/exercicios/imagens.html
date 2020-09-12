@@ -1,0 +1,79 @@
+<!-- As imagens ficarão dentro de uma tag p (parágrafo) para cada imagem ficar em uma linha e
+    para depois ficar mais fácil de selecionar as imagens para que o slider funcione -->
+
+<div>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" alt="Muro da Cidade"
+            width="513" height="342"
+            title="Muro da Cidade por Tarso Bessa">
+    </p>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" alt="Intro Cod3r"
+            height="342">
+    </p>
+
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="Rio de Janeiro"
+            height="342">
+    </p>
+
+    <p class="texto">
+        <!-- Colocando a imagem junto de um texto -->
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="Avatar"
+            height="50" align="left">
+            Luvasjd Luyf asnisc Liyuadhja ckac k dceragrhref
+            awefffffffffffffgrgergaeerh hr aeh h ht h haregr
+            h eth esht rth ht hj j j srhtqrtq35y 56uey5j tae
+            aerhs e hj j j sth j tsh jseh j n h   n h tsr  n
+            arh tm seh tj j j sr h  aeht ah tah th ht a h th
+            e hsh e heth sh ar hareguihg aurih aiguh g uih i
+    </p>
+
+    <p class="cidade"></p>
+
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png"
+                media="(min-width: 600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="">
+        </picture>
+    </p>
+</div>
+<style>
+    .circular {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img {
+        margin-right: 10px;
+    }
+
+    .cidade {
+        width: 513px; height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center; background-repeat: no-repeat; background-size: 200%;
+    }
+</style>
+
+<!-- width: é a propriedade que representa a largura | height: é a propriedade que representa a altura | Ambas as propriedades não são obrigatórias -->
+<!-- title: aparece quando você passa com o cursor por cima da foto -->
+
+<!-- O formato png permite transparência na imagem, já o jpg não permite -->
+<!-- align é utilizado junto com texto | Neste exemplo alinha a imagem à esquerda do texto -->
+
+<!-- .texto img ==> Permite adicionar estilos na tag img dentro da classe texto | margin-right da um espeçamento do lado direito -->
+
+<!-- background-image adiciona uma imagem de background a partir de uma url -->
+<!-- background-position: center; para a imagem ficar centralizada -->
+<!-- background-size da um 'zoom' na imagem -->
+
+<!-- na tag picture há a possibilidade de colocar várias fontes (imagens diferentes)
+    e em cima dessas imagens aplicar critérios para que essas imagens sejam exibidas ou não, por exemplo:
+    media="(min-width: 600px)" ==> Só exibe a imagem caso ela tenha no mínimo 600px, caso ela tenha menos de 600px vai descendo até achar a próxima imagem com 600px -->
+<!-- Caso o source aponte para uma imagem que não exista dará problema -->

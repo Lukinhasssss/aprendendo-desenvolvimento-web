@@ -1,0 +1,74 @@
+<table>
+    <caption>Produtos</caption> <!-- caption == o que representa essa tabela -->
+
+    <thead> <!-- Define a área do cabeçalho da tabela -->
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody> <!-- Define a área do corpo da tabela -->
+        <tr>
+            <td>PC Gamer</td>
+            <td>3289,00</td>
+            <td>5</td>
+            <td>16445,00</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Mi 9T</td>
+            <td>1200,00</td>
+            <td>7</td>
+            <td>8400,00</td>
+        </tr>
+    </tbody>
+
+    <tfoot> <!-- Define a área do rodapé da tabela -->
+        <tr>
+            <td colspan="3">Total</td>
+            <td>24845,00</td>
+        </tr>
+    </tfoot>
+</table>
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    thead tr {
+        border-bottom: solid 3px #444;
+    }
+
+    tbody tr:hover {
+        background-color: #dedede;
+    }
+
+    tfoot {
+        background-color: #444;
+        color: #fff;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Dentro da tabela existem 3 grandes regiões que são: Cabeçalho, Corpo e Rodapé -->
+<!-- Os dados são organizados em linhas e colunas então uma linha dentro de uma tabela é um tr -->
+<!-- colspan: indica a quantidade de colunas que eu quero ocupar em uma determinada linha -->
+<!-- rolspan: indica a quantidade de linhas que eu quero ocupar -->
+
+<!-- border-collapse: collapse para não ter borda -->
+
+<!-- thead tr {} == no tr de thead aplique estes estilos... -->
+<!-- border-bottom: solid 3px #444; == aplica uma borda sólida com 3px na cor cinza na parte de baixo do thead -->
+
+<!-- tbody tr:hover {} == Quando o mouse passar por cima de tbody na linha da tabela (tr) aplique estes estilos... -->
+<!-- background-color: #dedede -->
+
+<!-- color: #fff; == Altera a cor da fonte -->
+<!-- font-weight: bold; == Deixa a fonte em negrito -->

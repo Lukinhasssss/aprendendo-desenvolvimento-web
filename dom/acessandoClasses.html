@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Classes</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        Classes
+    </div>
+    <script>
+        const div = document.querySelector('div')
+        const classes = div.classList
+        classes.add('destaque') // Adiciona
+        classes.remove('destaque') // Remove
+        classes.toggle('destaque') // Se não existir ele adiciona e se existir ele remove
+        console.log(classes.contains('destaque')) // .contains Verifica se a classe está contida ou não na minha lista de classes
+        console.log(classes.length) // length = tamanho --> Quantidade de classes que o elemento tem
+        classes.toggle('destaque') // Como 'destaque' já existe, ele agora vai remover
+        console.log(classes.length) // Antes tinha 1 classe e agora não tem nenhuma
+
+        classes.add('destaque1')
+        classes.add('destaque2')
+        console.log(classes.length) // Mesmo 'destaque1' e 'destaque2' não fazendo efeito o resultado será 2
+
+        for (let c of classes) {
+            console.log(c)
+        }
+
+        classes.forEach(c => console.log(c)) // Para cada c (conteúdo) faça => console.log(c)
+    </script>
+</body>
+
+</html>

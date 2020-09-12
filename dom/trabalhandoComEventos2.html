@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <div>Elemento</div>
+    <script>
+        // O objetivo deste exemplo é poder arrastar a div com o mouse
+        const item = document.querySelector('div')
+        item.style.position = 'absolute'
+
+        item.onmousemove = e => {
+            const item = e.target // div que disparou o vento
+            item.style.cursor = 'move' // Quando colocar o mouse em cima do elemento o cursor já vai estar com a opção de mover
+            if (e.buttons) { // Se estiver algum evento clicado o valor ficará diferente de zero e se for != de 0 dará verdadeiro, ou seja, != 0 quer dizer que alguém clicou no mouse
+                item.style.top = `${e.clientY - (item.clientHeight / 2)}px`
+                // e = evento que eu recebi
+                // item.style.top --> Para setar a posição que ela está em relação ao topo da página. | Qual é a distância dessa div para o topo ???
+                // e.clientY (eixo vertical) - a altura da div (item.clientHeight / 2)
+                // (item.clientHeight / 2) --> Para quando eu clicar ele continuar bem no meio
+                item.style.left = `${e.clientX - (item.clientWidth / 2)}px`
+            }
+        }
+    </script>
+</body>

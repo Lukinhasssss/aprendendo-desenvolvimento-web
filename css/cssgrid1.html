@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Grid #01</title>
+    <style>
+        /* https://caniuse.com/#feat=css-grid */
+
+        html, body {
+            margin: 20px;
+            height: calc(100% - 40px); /* 100% da altura - 40px. Esses 40 pixels são da margem */
+            background-color: lightgray;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            border: solid 5px dodgerblue;
+            background: #fff;
+        }
+            /* CSS grid */ /* O css grid é bidimensional, diferente do flex-box que é unidirecional */
+        body {
+            display: grid; /* Ao utilizar o css grid ocupou 100% da altura setada anteriormente no body */
+            grid-template-columns: 50% 50%; /* Define qual vai ser o template (organização) das minhas colunas dentro do css grid */ /* Dessa forma o grid passa a ter 2 colunas */
+            grid-template-columns: repeat(4, 8.33% 8.33% 8.33%); /* Vai criar três colunas com 8.33% e vai multiplicalas por 4 totalizando 12 colunas de 8.33% */
+            grid-template-columns: repeat(4, 8.33%); /* Nesse caso terei 4 colunas com 8.33% cada */ /* Se multiplicar por 12 ao invés de 4 dá o mesmo resultado de cima */
+            grid-template-columns: repeat(11, 100px) 100px; /* Neste caso acrescenta mais um espaço de 100px */
+            /* grid-template-columns: minmax(100px, 300px); */ /* Faz com que a coluna tenha no mínimo 100px e no máximo 300x */
+            grid-template-columns: 200px 20% 1fr; /* 1ª Coluna: 200px, 2ª Coluna: 20%, 3ª Coluna: 1 fragmento (pega o resto que sobrou desses 200px - 20%) */
+            grid-template-columns: 3fr 6fr 3fr; /* Quebra a largura em 12 colunas (3+6+3) a 1ª coluna pega 3/12 fragmentos a 2ª pega 6/12 (metade) e a 3ª pega 3/12 */
+
+            /* Aplicando templates para as linhas */
+            grid-template-rows: 50% 25% 12.5% 12.5%; /* 1ª Linha: 50%, 2ª Linha: 25%, 3ª Linha: 12.5%, 4ª Linha 12.5% */
+            grid-template-rows: 100px 1fr; /* Neste caso a 3ª e 4ª linha vão pegar o espaço que sobrar de acordo com o que foi definido na 1ª e 2ª linha (3 e 4 se ajustam ao conteúdo) */
+            grid-template-rows: 100px auto auto auto; /* auto divide o restante de forma igualitária */
+        }
+
+        .d8 {
+            grid-column-start: 2; /* Para iniciar a partir da coluna 2 */
+            grid-column-end: 4;
+            grid-column-end: span 2; /* Comece na casa 2 e 'ande' 2 casas para o lado */ /* Da o mesmo resultado que o exemplo anterior */
+
+            grid-row-start: 3;
+            grid-row-end: 5;
+            grid-row-end: span 2;
+        }
+
+        .d10, .d11 {
+            /* Podem acabar se sobrepondo */
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 5;
+            grid-row-end: span 1;
+        }
+
+        .d10 {
+            z-index: 10; /* O z-index seria a "profundidade" dos elementos */ /* Define quem vai ficar na frente de quem */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    <div class="d6">6</div>
+    <div class="d7">7</div>
+    <div class="d8">8</div>
+    <div class="d9">9</div>
+    <div class="d10">10</div>
+    <div class="d11">11</div>
+    <div class="d12">12</div>
+</body>
+
+</html>
+
+<!--
+OBSERVAÇÃO IMPORTANTE!!!
+
+    NO CASO DO CSS GRID, COLUNAS CRESCEM NA HORIZONTAL E LINHAS CRESCEM NA VERTICAL
+-->

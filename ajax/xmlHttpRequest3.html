@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #03</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+        function ajax(config) {
+            const xhr = new XMLHttpRequest()
+            xhr.open(config.metodo, config.url, true)
+
+            xhr.onreadystatechange = e => { // Esse evento vai ser chamado sempre que o status da requisição mudar
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        config.sucesso(xhr.responseXML)
+                    } else if (xhr.status >= 400) {
+                        config.erro({
+                            codigo: xhr.status,
+                            texto: xhr.statusText
+                        })
+                    }
+                }
+            }
+
+            xhr.send()
+        }
+
+        // Chamando a função ajax
+        ajax({
+            url: "dados/estados.xml",
+            metodo: "get",
+            sucesso(resposta) {
+                const estados = resposta.getElementsByTagName('estado') // Essa const estados vai ser uma lista então será preciso percorre-lá
+                const itens = Array.from(estados).reduce( // Array.from() transforma o conteúdo passado como parâmetro em um array
+                    (html, estado) => html + `<li>${estado.attributes.nome.value}</li>`, '' // '' server para o reduce iniciar com uma string vazia depois adiciona li's
+                )
+                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`) // ntes de encerrar o body coloca a ul com todos os itens (estados)
+            },
+            erro(e) {
+                const mensagemDeErro = document.createTextNode(`${e.codigo}: ${e.texto}`)
+                document.body.appendChild(mensagemDeErro)
+            }
+        })
+    </script>
+</body>

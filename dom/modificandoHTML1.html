@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <script>
+        const body = document.querySelector('body')
+
+        const div1 = document.createElement('div') // No createElement eu passo o elemento que eu estou querendo criar
+        div1.classList.add('destaque')
+        // Além de adicionar a classe eu posso definir o conteúdo com o innerHTML
+        div1.innerHTML = 'Primeiro'
+
+        const div2 = document.createElement('div')
+        div2.setAttribute('wm-atributo', 'valor')
+        div2.innerHTML = 'Segundo'
+
+        const p = document.createElement('p')
+        p.innerHTML = 'Terceiro'
+
+        const div3 = document.createElement('div')
+        div3.appendChild(p) // appendChild() --> Adiciona o parágrafo dentro da div. appendChild() Coloca no último elemento daquele 'pai' que neste caso é a div3
+
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+
+        const texto = document.createTextNode('Antes...')
+        div3.insertBefore(texto, div3.childNodes[0]) // Insere o 'texto' antes do elemento de posição[0] (1º elemento)
+
+        const div4 = div3.cloneNode(true) // 'true' quer dizer que vai copiar o elemento atual + todos os seus filhos e se for 'false' copia só o elemento e não copia os filhos
+        body.appendChild(div4)
+        body.removeChild(div3) // Remove a div3 mas a div4 que é clone da div3 continua
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+show dbs
+
+use 'nome da db' --> exemplo: use wm
+
+db.createCollections('estados') --> Cria uma coleção
+
+show collections --> Mostra as coleções
+
+db.createCollections('Estados') --> Diferente do banco relacional o banco não relacional é case sensitive
+
+db.estados.drop() --> Exclui a coleção (coleção é quase a mesma coisa de tabela)

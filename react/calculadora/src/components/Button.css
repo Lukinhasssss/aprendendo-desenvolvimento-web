@@ -1,0 +1,34 @@
+:root {
+    --bg-button: #f0f0f0;
+    --border-button: solid 1px #888;
+}
+
+.button {
+    font-size: 1.4em;
+    background-color: var(--bg-button);
+    border: none;
+    border-right: var(--border-button);
+    border-bottom: var(--border-button);
+    outline: none;
+}
+
+.button:active { /* active significa quando estiver ativo, ou seja, quando o potão estiver precionado vai adicionar estilo... */
+    background-color: #ccc;
+}
+
+.button.double { /* Quando o botão ocupar duas posições... */
+    grid-column: span 2; /* Para ocupar duas posições */
+}
+
+.button.triple { /* Quando o botão ocupar três posições... */
+    grid-column: span 3; /* Para ocupar três posições */
+}
+
+.button.operation { /* Quando o botão representar uma operação */
+    background-color: #fa8231;
+    color: #fff;
+}
+
+.button.operation:active {
+    background-color: #fa8231cc;
+}

@@ -1,0 +1,10 @@
+.calculator {
+    width: 235px;
+    height: 320px;
+    border-radius: 5px;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: repeat(4, 25%); /* Desta forma terão 4 colunas cada uma ocupando 25% da largura total */
+    grid-template-rows: 1fr 48px 48px 48px 48px 48px; /* Desta forma terão 6 linhas com a 1ª linha ocupando 1fr (100% da altura restante) e as demais linhas ocupando 48px fixos de altura */
+}

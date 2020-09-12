@@ -1,0 +1,22 @@
+/* div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+} */
+
+table {
+    width: 100%;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.edit > i {
+    color: #3fb57e;
+}
+
+.delete > i {
+    color: #e35e6b;
+}

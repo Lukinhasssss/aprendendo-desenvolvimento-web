@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Texto</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html {
+            font-size: 28px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        div {
+            font-size: 50px;
+        }
+
+        p {
+            /* Valores Padrões */
+            font-size: 1em;
+            font-size: 100%;
+            font-size: 16px;
+            font-size: 12pt;
+
+            /* Unidades Absolutas */
+            font-size: 100px; /* tamanho do pixel é relativo de acordo com o dpi (dots per inch - pixels por polegada) do dispositivo */
+            font-size: 72pt;
+            font-size: 1in; /* 72pt equivale a 1in (1 inch - 1 polegada) */
+
+            /* Unidades Relativas */
+            font-size: 2.2em; /* Multiplica o tamanho da fonte padrão do navegador por 2.2 | O em pega a referência de fonte mais próxima. Neste caso como o p está dentro da div a fonte aumenta 50 * 2.2 */
+            font-size: 2.2rem; /* Pega a referência da raiz do html que é o tamanho padrão do navegador mas que pode ser alterado na tag html */
+            font-size: 50vh;
+            font-size: 10vw;
+
+            font-family: monospace; /* monospace: todas as letras ocupam o 'mesmo espaço' */
+            font-family: Georgia, serif; /* Georgia faz parte da familia de fontes serif | fontes serif tem uma pontinha no final da letra */
+            font-family: Verdana, sans-serif; /* São fontes um pouco mais retas */
+            font-family: 'Fira Code'; /* Fonte para programação */
+            font-family: 'Indie Flower', cursive; /* Fontes cursivas */
+
+            font-weight: 900; /* weight significa peso, ou seja, é o peso da fonte */
+            font-weight: lighter;
+            font-style: italic;
+            text-transform: uppercase; /* uppercase deixa todas maiúsculas e lowercase deixa todas minúsculas */
+            /* text-decoration: overline underline line-through; | overline: linha em cima, underline: linha embaixo, line-through: linha no meio */
+            word-spacing: 10px; /* Espaço entre as palavras */
+            letter-spacing: 40px; /* Espaço entre as letras */
+            line-height: 2.5em; /* Altura da linha */
+            text-align: center; /* Alinhamento do texto */
+        }
+
+        .botao { /* Fazendo o link parecer com um botão */
+            font-size: 28px;
+            text-decoration: none; /* Tira a linha do link */
+            padding: 10px 30px;
+            border-radius: 25px; /* borda arredondada */
+        }
+
+        .destaque {
+            color: #fff;
+            background: tomato;
+            box-shadow: 2px 2px 1px 1px #000; /* Aplica sombra */
+        }
+
+        .destaque:active { /* Fazendo a sombra sumir ao apertar no link */
+            /* active: Quando o clique acontecer (quando o link estiver ativo vai aplicar os estilos que eu colocar) */
+            box-shadow: none; /* Vai tirar o sombreamento ao clicar */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>
+            Que texto
+            <br>legal!!!
+        </p>
+    </div>
+    <a href="http://google.com" class="botao destaque">Google</a>
+</body>
+
+</html>

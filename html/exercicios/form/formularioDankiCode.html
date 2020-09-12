@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<title>Título do meu website</title>
+	<style>
+		* {
+	        margin: 0px;
+	        padding: 0px;
+		}
+
+		html, body {
+			height: 100%;
+		}
+
+		form {
+			width: 96%;
+			max-width: 600px;
+			margin: 30px auto;
+			text-align: center;
+		}
+
+		form fieldset {
+			padding: 20px 40px;
+			border: solid 1px #ccc;
+		}
+
+		form legend {
+			font-size: 20px;
+			color: #012;
+		}
+
+		form input[type=text] {
+			font-family: tahoma;
+			display: inline-block;
+			margin-top: 30px;
+			width: 80%;
+			padding: 10px 13px;
+			border: solid 1px #ccc;
+		}
+
+		form input[type=text]:focus, form select:focus, form textarea:focus {
+			outline: 0;
+		}
+
+		form select {
+			font-family: tahoma;
+			color: #666;
+			width: calc(80% + 26px);
+			margin-top: 30px;
+			padding: 10px 13px;
+			display: inline-block;
+			border: solid 1px #ccc;
+		}
+
+		form select option[disabled] {
+			color: darkorange;
+		}
+
+		/*
+		form select option:nth-of-type(3) { /* Pega 3º filho
+			color: red;
+		}
+		*/
+
+		form h2 {
+			margin-top: 20px;
+			color: #444;
+		}
+
+		.input {
+			display: inline-block;
+			text-align: left;
+			margin-top: 20px;
+		}
+
+		.input span {
+			margin-left: 13px;
+			font-size: 16px;
+			color: #666;
+		}
+
+		form textarea {
+			font-family: tahoma;
+			border: solid 1px #ccc;
+			margin-top: 30px;
+			width: 80%;
+			height: 140px;
+			padding: 10px 13px;
+			resize: none;
+		}
+
+		form input[type=submit] {
+			margin-top: 30px;
+			border: 0;
+			width: 140px;
+			height: 40px;
+			font-size: 16px;
+			border: solid 2px rgb(130, 130, 130);
+			color: #fff;
+			background-color: rgb(140, 140, 140);
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<form>
+		<fieldset> <!-- Para criar um grupo de elementos de form -->
+			<legend>Meu grupo do formulário</legend>
+			<div><input type="text" name="nome" placeholder="Digite o seu nome" /></div>
+			<div><input type="text" name="email" placeholder="Digite o seu e-mail" /></div>
+			<div>
+				<select name="lista">
+				<option disabled selected>Qual sua idade ?</option>
+				<option value="20">20</option>
+				<option value="25+">25+</option>
+				<option value="40+">40+</option>
+				</select>
+			</div>
+
+			<h2>Qual sua cidade ?</h2>
+			<div class="input">
+				<div>
+					<input type="radio" name="cidade" value="Florianópolis"><span>Florianópolis</span>
+				</div>
+				<div>
+					<input type="radio" name="cidade" value="São Paulo"><span>São Paulo</span>
+				</div>
+				<div>
+					<input type="radio" name="cidade" value="Rio de Janeiro"><span>Rio de Janeiro</span>
+				</div>
+			</div>
+
+			<h2>O que você gosta de comer ?</h2>
+			<div class="input">
+				<div>
+					<input type="checkbox" name="cidade[]" value="Fruta"><span>Fruta</span>
+				</div>
+				<div>
+					<input type="checkbox" name="cidade[]" value="Fast Food"><span>Fast Food</span>
+				</div>
+				<div>
+					<input type="checkbox" name="cidade[]" value="Salada"><span>Salada</span>
+				</div>
+			</div>
+
+			<div>
+				<div>
+					<textarea name="onservacao" placeholder="Possui alguma observação ?"></textarea>
+				</div>
+			</div>
+
+			<div>
+				<input type="submit" name="action" value="Enviar!">
+			</div>
+		</fieldset>
+	</form>
+</body>
+
+</html>

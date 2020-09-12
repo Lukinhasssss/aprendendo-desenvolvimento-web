@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>{{ contador }}</p>
+        <p>
+            <button v-on:click="add">+1</button>
+            <button @click="contador -= 2">-2</button>
+        </p>
+        <p @mousemove="atualizarPosicao">
+            Coordenadas: {{ x }} e {{ y }}
+            <!-- <span @mousemove="stop">Aqui para (.stop) de funcionar</span> -->
+            <span @mousemove.stop>Aqui para (.stop) de funcionar</span>
+        </p>
+        <input type="text" @keyup.enter="alerta">
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                add() {
+                    this.contador++ // Sempre que este método for chamado vai incrementar o contador
+                },
+                atualizarPosicao(event) {
+                    this.x = event.clientX
+                    this.y = event.clientY
+                },
+                stop(event) {
+                    event.stopPropagation()
+                },
+                alerta() {
+                    alert('Você pressionou a tecla Enter!')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

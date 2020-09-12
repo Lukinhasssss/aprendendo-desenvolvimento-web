@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Manipulando Atributos</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+    <style>
+        [wm-relogio] {
+            text-align: center;
+        }
+
+        [wm-relogio] button {
+            font-size: 1.6em;
+            padding: 0px 25px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Manipulando Atributos</h1>
+    <div wm-relogio='1000'></div> <!-- esse '1000' significa que o relógio será atualizado de 1000 em 1000 milissegundos, ou seja, de 1 em 1 segundo -->
+    <div wm-relogio='3000'></div>
+
+    <script>
+        function Relogio(elemento) {
+            const horaCerta = $('<p>').html('0')
+            const botaoMenos = $('<button>').html('-') // Vai diminuir a quantidade de tempo em que o relógio vai ficar atualizando, ou seja, vai atualizar com uma frequência menor
+            const botaoMais = $('<button>').html('+') // Vai aumentar a quantidade de tempo em que o relógio vai ficar atualizando, ou seja, vai atualizar com uma frequência maior
+
+            const $elemento = $(elemento)
+            $elemento.append(horaCerta, botaoMenos, botaoMais)
+
+            const getIntervaloAtual =  // Intervalo atual de atualização do relógio
+                () => parseInt($elemento.attr('wm-relogio')) // Vai dar um parseInt no atributo wm-relogio, ou seja, vai convertê-lo para inteiro
+
+            let temporizador = null // Vai receber o resultado da função setInterval
+            const iniciar = () => {
+                if (temporizador) clearInterval(temporizador) // Se o temporizador estiver vazio ele dá um clearInterval para limpar o temporizador
+                temporizador = setInterval(() => {
+                    horaCerta.html(new Date().toLocaleString('pt-br')) //Obs: new Date() pega a data atual é as horas
+                }, getIntervaloAtual())
+            }
+
+            const alterarIntervalo = delta => {
+                const novo = Math.max(getIntervaloAtual() + delta, 1000) // Atribui o valor de getInterval() + delta, OU o valor 1000 | Math.max() vai fazer com que atribua o valor máximo (maior entre os dois)
+                $elemento.attr('wm-relogio', novo)
+                iniciar() // Sempre que eu alterar o intervalo será preciso chamar a função iniciar
+            }
+
+            botaoMenos.click(event => alterarIntervalo(1000))
+            botaoMais.click(event => alterarIntervalo(-1000))
+            iniciar()
+        }
+
+        $('[wm-relogio]').each((index, elem) => new Relogio(elem))
+
+        // $('[wm-relogio]').attr('opa') // Vai ler um atributo
+        // $('[wm-relogio]').attr('opa', 3) // Vai alterar o incluir um atributo
+        $('[wm-relogio]').attr({ opa: 1, novo: true }) // Desta forma eu posso adicionar vários atributos de uma vez
+        $('[wm-relogio]').removeAttr('opa').removeAttr('novo') // Para remover um atributo
+    </script>
+</body>
+
+</html>
